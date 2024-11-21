@@ -17,6 +17,7 @@ def get_api():
         if api_key:
             st.session_state["GOOGLE_API_KEY"] = api_key
             st.success("API key set successfully!")
+            st.session_state["chat_session"] = start_chat_session()
             st.rerun()
         else:
             st.error("API key cannot be empty.")
@@ -30,7 +31,7 @@ if "GOOGLE_API_KEY" not in st.session_state:
         get_api()
     else:
         st.session_state["GOOGLE_API_KEY"] = os.environ["GOOGLE_API_KEY"]
-    st.session_state["chat_session"] = start_chat_session()
+    
 
 
 if "GOOGLE_API_KEY" in st.session_state:
@@ -65,6 +66,7 @@ if "GOOGLE_API_KEY" in st.session_state:
                 file = Image.open(file_object)
                 # Content to be given to Model
                 input.append(file)
+                input.append("Describe the image")
                 # Display user message in chat message container
                 st.chat_message("user").image(file)
                 # Add user message to chat history
