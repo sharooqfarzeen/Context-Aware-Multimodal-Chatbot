@@ -1,4 +1,4 @@
-## [Try the app on streamlit](https://context-aware-multimodal-chatbot.streamlit.app/)
+## [Try the app on Streamlit](https://context-aware-multimodal-chatbot.streamlit.app/)
 
 **OR**
 
