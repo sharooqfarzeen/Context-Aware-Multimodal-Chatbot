@@ -23,14 +23,16 @@ def get_api():
             st.error("API key cannot be empty.")
     st.markdown("[Create your Gemini API Key](https://aistudio.google.com/apikey)", unsafe_allow_html=True)
 
-# Loading API Keys
-load_dotenv()
+# Loading API keys; overrides any existing API Keys in the environment
+load_dotenv(override=True)
+
 # Check if the API key is set
 if "GOOGLE_API_KEY" not in st.session_state:
     if "GOOGLE_API_KEY" not in os.environ:
         get_api()
     else:
         st.session_state["GOOGLE_API_KEY"] = os.environ["GOOGLE_API_KEY"]
+        st.session_state["chat_session"] = start_chat_session()
     
 
 
